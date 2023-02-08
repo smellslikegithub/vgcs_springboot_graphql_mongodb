@@ -1,0 +1,33 @@
+type Query{
+    vehicle: [Vehicle]
+    vehicleById(id: ID!): Vehicle
+    vehiclesByBrand(brand: String!): [Vehicle] # Supports partial naming for the brand. Assuming this to be the name of vehicle.
+    vehiclesByServiceStatus(serviceName: String!, serviceStatus: String!): [Vehicle]
+}
+
+type Vehicle {
+    id: ID!
+    vehicleService: VehicleService
+    vehicleInfo: VehicleInfo
+}
+
+type VehicleService {
+    communicationStatus: String
+    services: [Service]
+}
+
+type Service {
+    serviceName: String
+    status: String
+    lastUpdate: String
+}
+
+type VehicleInfo{
+    msidn: ID!
+    engineStatus: String
+    fleet: String
+    brand: String
+    countryOfOperation: String
+    chassisNumber:String
+    cassisSeries: String
+}

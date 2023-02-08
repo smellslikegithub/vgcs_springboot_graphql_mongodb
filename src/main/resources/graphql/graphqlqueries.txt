@@ -1,0 +1,37 @@
+# Get single vehicle by id
+query{
+  vehicleById(id: "2337d25f-8917-4e26-920f-ddbe9ba063d6") {
+    id
+    vehicleInfo{
+      msidn
+      engineStatus
+      fleet
+      brand
+      countryOfOperation
+      chassisNumber
+      cassisSeries
+    }
+    vehicleService{
+      communicationStatus
+      services{
+        serviceName
+        lastUpdate
+      }
+    }
+  }
+}
+
+# Accepts a service name and a service status. Returns all vehicles where the specified service has the specified status
+
+query{
+  vehiclesByServiceStatus(serviceName: "FuelMeasurment", serviceStatus: "DEACTIVATED"){
+    id
+    vehicleService{
+      communicationStatus
+      services{
+        serviceName
+        status
+      }
+    }
+  }
+}
