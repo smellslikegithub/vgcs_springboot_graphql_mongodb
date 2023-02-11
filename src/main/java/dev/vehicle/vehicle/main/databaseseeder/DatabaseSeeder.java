@@ -19,10 +19,16 @@ public class DatabaseSeeder {
     // TODO: Maybe better to have a service discovery system like eureka.
     @Value("${mock.vehicle.api.url}")
     public String mockApiUrl;
-    @Autowired
-    private RestTemplate restTemplate;
-    @Autowired
-    VehicleDbService vehicleDbService;
+
+    private final RestTemplate restTemplate;
+
+    private final VehicleDbService vehicleDbService;
+
+    DatabaseSeeder(VehicleDbService vehicleDbService, RestTemplate restTemplate) {
+        this.vehicleDbService = vehicleDbService;
+        this.restTemplate = restTemplate;
+    }
+
 
     @GetMapping("/seed_vehicles")
     @ResponseBody
@@ -42,12 +48,10 @@ public class DatabaseSeeder {
                     // TODO: Make this async using WebClientBuilder, for now, just using RestTemplate
                     VehicleService vehicleService = restTemplate.getForObject(mockApiUrl + "/vehicles/?id=" + vehicle.getId(), VehicleService.class);
 
-
                     // Build the entire vehicle object for saving to an external database. For e.g., mongodb in this case.
-
                     vehicles.add(new Vehicle(vehicle.getId(), vehicleService, vehicleInfo));
 
-                //vehicleInfos.add(vehicleInfo);
+
 
 
                 }

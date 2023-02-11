@@ -25,6 +25,7 @@ public class VehicleApplication {
 		return new VehicleRepositoryCustomImpl(mongoTemplate);
 	}
 
+
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(VehicleApplication.class, args);
 

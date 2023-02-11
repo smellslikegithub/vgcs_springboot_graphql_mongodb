@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class VehicleDbService {
-    @Autowired
-    private VehicleRepository vehicleRepository;
+    private final VehicleRepository vehicleRepository;
+
+    public VehicleDbService(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
+
+    }
 
     public String storeVehicle(Vehicle vehicle) {
         vehicleRepository.save(vehicle);
