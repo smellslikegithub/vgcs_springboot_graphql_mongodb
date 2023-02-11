@@ -62,9 +62,4 @@ public class DatabaseSeeder {
         return vehicles;
     }
 
-    public String seederResponse(List<Vehicle> vehicles){
-        StringBuilder ids = new StringBuilder();
-        vehicles.stream().forEach(vehicle -> ids.append(vehicle.getId()).append("\n"));
-        return "Vehicles added to db: \n" + ids.toString();
-    }
 }
